@@ -3,6 +3,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
+import gifRouter from './routes/gif.routes.js';
+
 
 const app = express();
 
@@ -18,6 +20,6 @@ app.use(
     abortOnLimit: true // default: false (if true, files will not be uploaded and an error event will be emitted)
   })
 );
-
+app.use('/gifs', gifRouter);
 
 export default app;

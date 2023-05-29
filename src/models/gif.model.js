@@ -2,10 +2,10 @@ import {Schema, model} from 'mongoose'
 
 const GifSchema = new Schema (
     {
-        title: {type: String, required: true},
-        url: {type: String, required: true},
+        title: {type: String},
+        url: {type: String, required: true, default: ''},
         liked: {type: Boolean, default: false},
-        category: {type: String, required: true, default: 'classic'},
+        category: {type: String, default: 'user'},
         description: {type: String, default: ''}
     }
 )

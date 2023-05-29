@@ -29,18 +29,12 @@ export const createGifUrl = async (req, res) => {
     const {title, url, category, description} = req.body
 
     try{
-
-    if(!title || !category || !url) {
-        return res.status(400).send("Missing data")
-    }
-
     const gifExists = await GifModel.findOne({title: title}).lean().exec()
 
     if(gifExists) {
         return res.status(400).send("Gif already exists")
     }
 
-   
     const gif = await GifModel.create({
         title, 
         category, 
@@ -64,19 +58,8 @@ export const createGifFile = async (req, res) => {
     console.log(file)
 
     try{
-    // if(!title || !category || !url) {
-    //     return res.status(400).send("Missing data")
-    // }
-
-    // const gifExists = await GifModel.findOne({title: title}).lean().exec()
-
-    // if(gifExists) {
-    //     return res.status(400).send("Gif already exists")
-    // }
 
     const resultMeme = await uploadGifs(file.tempFilePath);
-
-    // console.log(resultMeme)
 
     const newMeme = await GifModel.create({
       title,
